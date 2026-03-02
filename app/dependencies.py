@@ -10,6 +10,8 @@ from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from sqlalchemy.orm import Session
 from app.utils.jwt import verify_token
 from app.models.User import User
+from fastapi import Query
+from typing import Optional
 
 bearer_scheme = HTTPBearer()
 
@@ -44,3 +46,13 @@ def get_course_service(db: Session = Depends(get_db)) -> CourseService:
 def get_student_controller(db: Session = Depends(get_db)) -> StudentController:
     service = StudentService(db)
     return StudentController(service)
+
+
+def get_current_user_for_chat(
+    current_user: User = Depends(get_current_user),
+    chat_id: Optional[int] = Query(None, description="Chat ID (optional)")
+):
+    return {
+        "user": current_user,
+        "chat_id": chat_id
+    }

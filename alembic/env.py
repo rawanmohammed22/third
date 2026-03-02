@@ -18,7 +18,9 @@ from app.models import (
     Book,
     student_book,
     Course,
-    student_course
+    student_course,
+    chat,
+    chat_message
 )
 
 # ─────────────── Alembic Config ───────────────
