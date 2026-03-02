@@ -8,6 +8,7 @@ from app.routers.course_router import router as course_router
 from app.routers.student_router import router as student_router
 from app.routers.cohere_router import router as cohere_router
 from app.routers.cv_router import router as cv_router
+from app.routers.embedding_router import router as  embedding_router
 
 app = FastAPI(title="Student API")
 
@@ -22,7 +23,8 @@ app.include_router(auth_router, prefix="/auth", tags=["Auth"])
 app.include_router(student_router, prefix="/students", tags=["Students"])
 app.include_router(course_router, prefix="/courses", tags=["Courses"])
 app.include_router(cv_router)
-# ... باقي الكود بتاعك
+app.include_router(embedding_router)
+
 
 from app.routers import cohere_router
 
