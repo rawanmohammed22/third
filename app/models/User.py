@@ -19,3 +19,12 @@ class User(Base):
         back_populates="user",
         uselist=False  # one-to-one
     )
+
+    documents = relationship("Document", back_populates="user")
+
+    cv: Mapped["UserCV"] = relationship(
+        "UserCV",
+        back_populates="user",
+        uselist=False,          # one-to-one من ناحية الـ User
+        cascade="all, delete-orphan"   # optional: لو حذفت الـ user يتمسح الـ CV
+    )
