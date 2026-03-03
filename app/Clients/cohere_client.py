@@ -60,7 +60,20 @@ class CohereClient:
             return response.message.content[0].text.strip()
 
         except Exception as e:
-            raise RuntimeError(f"خطأ عام في Cohere: {str(e)}")
+           raise RuntimeError(f"خطأ عام في Cohere: {str(e)}")
+
+
+    def embed(self, text: str) -> list[float]:
+        
+        try:
+            response = self.client.embed(
+                texts=[text],
+                model="embed-multilingual-v3.0",
+                input_type="search_document"
+            )
+            return response.embeddings.float[0]    # ← list of 1024 floats
+        except Exception as e:
+            raise RuntimeError(f"خطأ في Embedding: {str(e)}")       
 
     def analyze_cv(self, cv_text: str) -> str:
         """

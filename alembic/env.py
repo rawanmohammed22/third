@@ -18,9 +18,19 @@ from app.models import (
     Book,
     student_book,
     Course,
-    student_course
+    student_course,
+    User,
+    UserCV,
+    Document,
+    DocumentChunk,
+    Embedding,
+    Chat,
+    ChatMessage
 )
 
+from pgvector.sqlalchemy import Vector
+from sqlalchemy import event
+from sqlalchemy.engine import Engine
 # ─────────────── Alembic Config ───────────────
 config = context.config
 
