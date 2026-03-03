@@ -25,7 +25,8 @@ from app.models import (
     DocumentChunk,
     Embedding,
     Chat,
-    ChatMessage
+    ChatMessage,
+    VideoChunk
 )
 
 from pgvector.sqlalchemy import Vector
